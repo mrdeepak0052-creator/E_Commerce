@@ -14,16 +14,14 @@ let port = process.env.PORT || 6000
 
 let app = express()
 
-app.use(express.json())
-app.use(cookieParser())
 // app.use(cors({
 //  origin:["https://e-commerce-frontend-h8st.onrender.com" ,"https://e-commerce-admin-hftw.onrender.com"],
 //  credentials:true
 // }))
+app.use(express.json());
+app.use(cookieParser());
 
-
-
-import cors from "cors";
+app.use(cors(corsOptions));
 
 const allowedOrigins = [
   "https://e-commerce-frontend-h8st.onrender.com",
