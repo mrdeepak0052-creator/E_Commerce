@@ -16,10 +16,29 @@ let app = express()
 
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({
- origin:["https://e-commerce-frontend-h8st.onrender.com" ,"https://e-commerce-admin-hftw.onrender.com"],
- credentials:true
-}))
+// app.use(cors({
+//  origin:["https://e-commerce-frontend-h8st.onrender.com" ,"https://e-commerce-admin-hftw.onrender.com"],
+//  credentials:true
+// }))
+
+
+
+import cors from "cors";
+
+const allowedOrigins = [
+  "https://e-commerce-frontend-h8st.onrender.com",
+  "https://e-commerce-admin-hftw.onrender.com"
+];
+
+const corsOptions = {
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+};
+
+app.use(cors(corsOptions));
+
 
 app.use("/api/auth",authRoutes)
 app.use("/api/user",userRoutes)
